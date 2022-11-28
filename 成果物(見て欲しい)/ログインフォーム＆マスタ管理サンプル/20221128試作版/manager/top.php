@@ -51,7 +51,17 @@ if ($class[COL_INFO['権限マスタ']['権限マスタ参照権限']['列名']]
         ?>
 
     </select></form><br>
-    <br><br>
+    <br>
+    <p>↓ 本当は ↑ の選択内容に応じて表示を変更したい</p><br>
+    <?php
+    setTable(array_keys(COL_INFO['職員マスタ']), selectTB(
+        TB_NAMES['職員マスタ'],
+        '*'
+    )
+        ->fetchAll())
+    ?><br>
+    <p>↑ 各行に「編集(updateを行う)」ボタンと「削除」ボタンを追加したい</p><br>
+    <br>
     <p>※2022年11月28日現在、職員マスタの「新規登録」のみ動作</p>
     <br><br>
     <button type=“button” onclick="btnRegsister_click()">新規登録</button>　

@@ -3,7 +3,7 @@ function setTableHeaders($headers)
 {
     print('<tr>');
     foreach ($headers as $header) {
-        print('<th>');
+        print('<th nowrap>');
         print($header);
         print('</th>');
     }
