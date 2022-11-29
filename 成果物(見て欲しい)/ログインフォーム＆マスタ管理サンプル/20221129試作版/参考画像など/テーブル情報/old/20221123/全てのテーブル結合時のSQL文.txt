@@ -1,0 +1,21 @@
+"SELECT " . implode(',', $col_names) . " FROM " . TB_NAMES['職員マスタ'] . " as s " . 
+  " INNER JOIN " . TB_NAMES['所属マスタ'] . " as b ON s." . COL_NAMES['職員マスタ']['所属コード']['列名']  . " = b." . COL_NAMES['所属マスタ']['所属コード']['列名'] . 
+  " INNER JOIN " . TB_NAMES['県マスタ'] . " as p ON LEFT(s." . COL_NAMES['職員マスタ']['所属コード']['列名']  . ", 6) = p." . COL_NAMES['県マスタ']['県コード']['列名'] . 
+  " INNER JOIN " . TB_NAMES['国マスタ'] . " as c ON LEFT(s." . COL_NAMES['職員マスタ']['所属コード']['列名']  . ", 3) = c." . COL_NAMES['国マスタ']['国コード']['列名'] . 
+  " INNER JOIN " . TB_NAMES['権限マスタ'] . " as cls ON s." . COL_NAMES['職員マスタ']['権限コード']['列名']  . " = cls." . COL_NAMES['権限マスタ']['権限コード']['列名'] 
+
+
+select * from staff as s 
+left outer join branches as b on s.code_branch = b.code
+left outer join prefs as p on left(s.code_branch, 6) = p.code
+left outer join countries as c on left(s.code_branch, 3) = c.code
+left outer join classes as cls on s.code_branch = cls.val;
+
+
++------------+--------------------------------------------------------------+--------------+----------------+------------+-------------+-------+---------------+---------------+-----------+----------------+--------+-----------+------+--------------+------+------------+------------+---------------+-------------+--------------+
+| code_staff | passawd                                                      | given_nm     | sur_nm         | birth_date | code_branch | class | cnt_auth_fail | limit_reached | code      | name_branch    | code   | name_pref | code | name_country | val  | name_class | flg_manage | flg_birthdate | flg_default | flg_editable |
++------------+--------------------------------------------------------------+--------------+----------------+------------+-------------+-------+---------------+---------------+-----------+----------------+--------+-----------+------+--------------+------+------------+------------+---------------+-------------+--------------+
+| 00001      | $2y$10$FUPj6LRGghwIVNUD2znmRuT3fxjzVJHW00ZmITKmFms0tbhx6enf6 | しんごくん   | かさわき       | 2000-01-01 | 392045001   |     0 |             0 | NULL          | 392045001 | 川崎本店       | 392045 | 神奈川    | 392  | 日本         | NULL | NULL       |       NULL |          NULL |        NULL |         NULL |
+| 00002      | $2y$10$y3MQHtSl.ildxJRwPEkeUu0xxeylCmWeDMwExBgE8P3Il6cXSG/Xu | ひよしちゃん | ニホンオオカミ | 2003-11-16 | 392064001   |     1 |             0 | NULL          | 392064001 | 東吉野村営業部 | 392064 | 奈良      | 392  | 日本         | NULL | NULL       |       NULL |          NULL |        NULL |         NULL |
+| 07174      | $2y$10$FUPj6LRGghwIVNUD2znmRuT3fxjzVJHW00ZmITKmFms0tbhx6enf6 | Kくん        | NULL           | NULL       | NULL        |     3 |             0 | NULL          | NULL      | NULL           | NULL   | NULL      | NULL | NULL         | NULL | NULL       |       NULL |          NULL |        NULL |         NULL |
++------------+--------------------------------------------------------------+--------------+----------------+------------+-------------+-------+---------------+---------------+-----------+----------------+--------+-----------+------+--------------+------+------------+------------+---------------+-------------+--------------+
